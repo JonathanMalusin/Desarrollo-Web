@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario</title>
+    <!-- Vinculamos el archivo CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Ingresa tu nombre</h1>
+        <form method="POST" action="/">
+            {{ form.hidden_tag() }}
+
+            <div class="form-group">
+                <label for="nombre">Nombre:</label>
+                {{ form.nombre(class="form-control") }}
+            </div>
+
+            <div>
+                <button type="submit" class="btn">Enviar</button>
+            </div>
+        </form>
+
+        {% if form.nombre.errors %}
+        <ul>
+            {% for error in form.nombre.errors %}
+                <li style="color: red;">{{ error }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+</body>
+</html>
